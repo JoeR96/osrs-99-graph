@@ -30,7 +30,9 @@ const SkillBar: React.FC<{ skill: SkillData }> = ({ skill }) => {
         pointerEvents: 'none',
         textAlign: 'center'
     });
-
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
     if (skill.level === 99 || skill.metric === 'overall') return null;
 
     return (
@@ -54,7 +56,9 @@ const SkillBar: React.FC<{ skill: SkillData }> = ({ skill }) => {
             >
                 <VerticalProgressBar />
                 <Box sx={{ position: 'absolute', zIndex: 2 }}>
-                    <InfoText variant="body2">Level: {skill.level}</InfoText>
+                    <InfoText style={{paddingBottom:'20px'}} variant="body2">
+                        {capitalizeFirstLetter(skill.metric)}
+                    </InfoText>                    <InfoText variant="body2">Level: {skill.level}</InfoText>
                     <InfoText variant="body2" sx={{ mt: 1 }}>
                         Remaining XP: {(XP_FOR_LEVEL_99 - skill.experience).toLocaleString()}
                     </InfoText>
